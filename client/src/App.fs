@@ -1,22 +1,32 @@
 module App
-open Feliz
 
-[<ReactComponent>]
-let Counter() =
-    let (count, setCount) = React.useState(0)
+open Feliz
+open Elmish
+
+type State = { Count: int }
+
+type Msg =
+    | Increment
+    | Decrement
+
+let init() = { Count = 0 }, Cmd.none
+
+let update (msg: Msg) (state: State) =
+    match msg with
+    | Increment -> { state with Count = state.Count + 1 }, Cmd.none
+    | Decrement -> { state with Count = state.Count - 1 }, Cmd.none
+
+let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
         Html.button [
-            prop.style [ style.marginRight 5 ]
-            prop.onClick (fun _ -> setCount(count + 1))
+            prop.onClick (fun _ -> dispatch Increment)
             prop.text "Increment"
         ]
 
         Html.button [
-            prop.style [ style.marginLeft 5 ]
-            prop.onClick (fun _ -> setCount(count - 1))
+            prop.onClick (fun _ -> dispatch Decrement)
             prop.text "Decrement"
         ]
 
-        Html.h1 count
+        Html.h1 state.Count
     ]
-

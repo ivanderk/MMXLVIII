@@ -9,6 +9,8 @@
         <Compile Include="Main.fs" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Fable.Elmish.React" Version="3.0.1" />
+        <PackageReference Include="Felix" Version="1.0.0.10" />
         <PackageReference Include="Feliz" Version="1.29.0" />
         <PackageReference Include="Feliz.Router" Version="3.5.0" />
         <PackageReference Include="Fable.DateFunctions" Version="3.5.0" />

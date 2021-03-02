@@ -1,12 +1,11 @@
 module Main
 
-open Feliz
-open Browser.Dom
 open Fable.Core.JsInterop
+open Elmish
+open Elmish.React
 
 importAll "./styles/global.scss"
 
-ReactDOM.render(
-    App.Counter(),
-    document.getElementById "feliz-app"
-)
+Program.mkProgram App.init App.update App.render
+|> Program.withReactSynchronous "feliz-app"
+|> Program.run
